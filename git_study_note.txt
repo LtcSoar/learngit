@@ -1,0 +1,16 @@
+here i should have used Chinese, but unluckily, if using Chinese, the software will continuly report the mistake.
+git config --global user.name ""
+git config -- global user.email ""
+git add file
+git commit --m ""
+git log                   // to see the history of all 
+git reflog                //to see the every step that you use so that you can use every edition of the file 
+mkdir learngit           // creat a file called learngit
+cd learngit               //go to learngit 
+pwd                        // show where you are (the path that i have walked
+git init                    //creat a git warehouse
+git reset --hard commit_id   // to go the id presenting edtion 
+HEAD HEAD^                   //all these means the edtion   such as HEAD~100 for the edtion long time ago 
+git checkout -- file          //if not placed to the stage  that means the last edition that is commited
+                              //if place to the stage  that means the change after being plaing to the stage is cleared
+git reset HEAD file        //if you change and place to the stage  this will help you to unload it from the stage
