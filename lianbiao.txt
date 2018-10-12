@@ -1,10 +1,12 @@
 #include<stdio.h>
+
 struct ComplexNode
 {
 	int Value;
 	ComplexNode *Next;
 	ComplexNode*Random;
 };
+
 class noder
 {
 public:
@@ -118,6 +120,7 @@ noder::~noder()
 }
 
 
+
 int main()
 {
 	int N,M,K,T,i=0,real,a,b,c;
@@ -161,4 +164,9 @@ int main()
 	printf("\n");
 	mynoder.showinrandom(mynoder.GetElem(T));
 	return 0;
-}
+	}
+	it is really
+	unbelievable
+	that it can chase the real ending  and this editor will remenber every word i say ,it is really interesing.
+	
+	
