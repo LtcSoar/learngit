@@ -17,7 +17,14 @@ git reset HEAD file        //if you change and place to the stage  this will hel
 git remote add origin git@server-name:path/repo-name.git  //servername here is github.com   path is your name  mine is Ltcccmy reposite name is
                                                            the one you build on the github  github is really a good server
 git push origin master                      //to push to origin(the connected online git reposity) on the master branch 
-  
+git checkout -b dec                         //creat a new branch called dev and switch to it
+git branch                                  //take a look at the branches
+git checkout dec                            //turn to the dec branch
+git branch dev                           //creat a new branch called dev
+git merge dev                                //get the dev branch involved
+git branch -d dev                           //delete the dev branch
+
+
 														 
 														
 												
