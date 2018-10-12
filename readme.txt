@@ -9,4 +9,4 @@ at the thought that i can show everyone that is interested in me or happended to
 and now i think the cloud is not that useful again since git helps to deal with a great deal of problems 
 created a new branch
 Creating a new branch is quick AND simple.
-i have another playing idea.
+i have another playing idea, which is worth playing.
