@@ -1,6 +1,4 @@
-#include<iostream>
 #include<stdio.h>
-using namespace std;
 struct ComplexNode
 {
 	int Value;
@@ -15,7 +13,6 @@ public:
 	ComplexNode* GetElem(int);
 	void Delete(int);
 	void Insert(int,int,int);
-	//void Traverse(void(*p)(ComplexNode*));
 	void showinoder(ComplexNode*);
 	void showinrandom(ComplexNode*);
 private:
@@ -91,23 +88,19 @@ void noder::showinoder(ComplexNode *start)
 	ComplexNode *p=start;
 	while(p)
 	{
-		//cout<<p->Value<<' ';
 		printf("%d ",p->Value);
 		p=p->Next;
 	}
 	printf("-1");
-	//cout<<-1;
 }
 void noder::showinrandom(ComplexNode*start)
 {
 	ComplexNode*p=start;
 	while(p)
 	{
-		//cout<<p->Value<<' ';
 		printf("%d ",p->Value);
 		p=p->Random;
 	}
-	//cout<<-1;
 	printf("-1");
 }
 noder::~noder()
@@ -127,243 +120,42 @@ noder::~noder()
 
 int main()
 {
-	short int N,M,K,T,i=0,real,a,b,c;
+	int N,M,K,T,i=0,real,a,b,c;
 	ComplexNode *head,*p1,*p2;
-	cin>>N>>M>>K>>T;
-	//scanf("%d %d %d %d\n",&N,&M,&K,&T);
+	//ComplexNode *pmax[200000];
+	scanf("%d %d %d %d",&N,&M,&K,&T);
 	p1=new ComplexNode;
 	head=p1;
-	cin>>p1->Value;
-	//scanf("%d ",&p1->Value);
-	while(i<N-1)
+	scanf("%d",&p1->Value);
+	//pmax[0]=p1;
+	for(i=0;i<N-1;i++)
 	{
 		p2=new ComplexNode;
-		cin>>p2->Value;
-		//scanf("%d ",&p2->Value);
+		//pmax[i+1]=p2;
+		scanf("%d",&p2->Value);
 		p1->Next=p2;
 		p1=p2;
-		i++;
 	}
-	//p2=new ComplexNode;
-	//scanf("%d\n",&p2->Value);
-	//p1->Next=p2;
-	p2->Next=NULL;
+	p1->Next=NULL;
 	noder mynoder(head,N);
 	p1=head;
 	for(i=0;i<N;i++)
 	{
-		cin>>real;
-		//scanf("%d ",&real);
+		scanf("%d",&real);
+		//pmax[i]->Random=pmax[real];
 		p1->Random=mynoder.GetElem(real);
 		p1=p1->Next;
 	}
-	//scanf("%d\n",&real);
-	//p1->Random=mynoder.GetElem(real);
-	//p1=p1->Next;
 	for(i=0;i<M;i++)
 	{
-		cin>>real;
+		scanf("%d",&real);
 		mynoder.Delete(real);
 	}
-	//scanf("%d\n",&real);
-	//mynoder.Delete(real);
 	for(i=0;i<K;i++)
 	{
-		cin>>a>>b>>c;
-		//scanf("%d %d %d ",&a,&b,&c);
+		scanf("%d %d %d",&a,&b,&c);
 		mynoder.Insert(a,b,c);
 	}
-
-
-	mynoder.showinoder(mynoder.GetElem(T));
-	//cout<<'\n';
-	printf("\n");
-	mynoder.showinrandom(mynoder.GetElem(T));
-	return 0;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#include<iostream>
-#include<stdio.h>
-using namespace std;
-struct ComplexNode
-{
-	int Value;
-	ComplexNode *Next;
-	ComplexNode*Random;
-};
-class noder
-{
-public:
-	noder(ComplexNode*p,int temp){Head=p;length=temp;}
-	~noder();
-	ComplexNode* GetElem(int);
-	void Delete(int);
-	void Insert(int,int,int);
-	void showinoder(ComplexNode*);
-	void showinrandom(ComplexNode*);
-private:
-	ComplexNode*Head;
-	int length;
-};
-ComplexNode* noder::GetElem(int temp)
-{
-	ComplexNode*pp=Head;
-	if(temp>=0)
-	{
-		while(temp>0)
-	    {
-		    pp=pp->Next;
-		    temp--;
-    	}
-		return pp;
-	}
-	else
-		return NULL;
-}
-void noder::Delete(int temp)
-{
-	int i;
-	ComplexNode*pp=Head;
-	ComplexNode*pp1;
-	if(temp==0)
-	{
-		for(i=0;i<length;i++)
-		{
-			if((pp1=GetElem(i))->Random==pp)
-				pp1->Random=NULL;
-		}
-		Head=Head->Next;
-		delete pp;
-	}
-	else
-	{
-		pp=GetElem(temp);
-		for(i=0;i<length;i++)
-		{
-			if((pp1=GetElem(i))->Random==pp)
-				pp1->Random=NULL;
-		}
-		pp1=GetElem(temp-1);
-		pp1->Next=pp->Next;
-		delete pp;
-	}
-	pp=NULL;
-	length--;
-}
-void noder::Insert(int data,int place,int destiny)
-{
-	ComplexNode *np=new ComplexNode;
-	np->Value=data;
-	ComplexNode *ppx;
-	if(place==0)
-	{
-		np->Next=Head;
-		Head=np;
-	}
-	else
-	{
-		ppx=GetElem(place-1);
-	    np->Next=ppx->Next;
-	    ppx->Next=np;
-	}
-	length++;
-	np->Random=GetElem(destiny);
-}
-void noder::showinoder(ComplexNode *start)
-{
-	ComplexNode *p=start;
-	while(p)
-	{
-		printf("%d ",p->Value);
-		p=p->Next;
-	}
-	printf("-1");
-}
-void noder::showinrandom(ComplexNode*start)
-{
-	ComplexNode*p=start;
-	while(p)
-	{
-		printf("%d ",p->Value);
-		p=p->Random;
-	}
-	printf("-1");
-}
-noder::~noder()
-{
-	ComplexNode*p2p=Head;
-	ComplexNode*p3p=p2p->Next;
-	for(int i=0;i<length-1;i++)
-	{
-		delete p2p;
-		p2p=p3p;
-		p3p=p2p->Next;
-	}
-	delete p2p;
-	p2p=NULL;
-}
-
-
-int main()
-{
-	short int N,M,K,T,i=0,real,a,b,c;
-	ComplexNode *head,*p1,*p2;
-	scanf("%d %d %d %d\n",&N,&M,&K,&T);
-	p1=new ComplexNode;
-	head=p1;
-	scanf("%d ",&p1->Value);
-	while(i<N-2)
-	{
-		p2=new ComplexNode;
-		scanf("%d ",&p2->Value);
-		p1->Next=p2;
-		p1=p2;
-		i++;
-	}
-	p2=new ComplexNode;
-	scanf("%d\n",&p2->Value);
-	p1->Next=p2;
-	p2->Next=NULL;
-	noder mynoder(head,N);
-	p1=head;
-	for(i=0;i<N-1;i++)
-	{
-		scanf("%d ",&real);
-		p1->Random=mynoder.GetElem(real);
-		p1=p1->Next;
-	}
-	scanf("%d\n",&real);
-	p1->Random=mynoder.GetElem(real);
-	for(i=0;i<M-1;i++)
-	{
-		scanf("%d ",&real);
-		mynoder.Delete(real);
-	}
-	scanf("%d\n",&real);
-	mynoder.Delete(real);
-	for(i=0;i<K-1;i++)
-	{
-		scanf("%d %d %d ",&a,&b,&c);
-		mynoder.Insert(a,b,c);
-	}
-	scanf("%d %d %d\n",&a,&b,&c);
-	mynoder.Insert(a,b,c);
 
 	mynoder.showinoder(mynoder.GetElem(T));
 	printf("\n");

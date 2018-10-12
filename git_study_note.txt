@@ -16,7 +16,8 @@ git checkout -- file          //if not placed to the stage  that means the last 
 git reset HEAD file        //if you change and place to the stage  this will help you to unload it from the stage
 git remote add origin git@server-name:path/repo-name.git  //servername here is github.com   path is your name  mine is Ltcccmy reposite name is
                                                            the one you build on the github  github is really a good server
-														   
+git push origin master                      //to push to origin(the connected online git reposity) on the master branch 
+  
 														 
 														
 												
