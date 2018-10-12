@@ -11,3 +11,4 @@ created a new branch
 Creating a new branch is quick AND simple.
 i have another playing idea, which is worth playing.
 i am sorry to change you again.
+now something is to be tested on the stash.
