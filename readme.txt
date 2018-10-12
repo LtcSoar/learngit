@@ -1,5 +1,5 @@
 git is a distributed version control system.
-git is a free software.
+git is a software that is free .
 OK now i seem to know what is git a bit more clear  
 it is a reposity that i record the experience in learning git
 thanks to liaoxuefeng 
