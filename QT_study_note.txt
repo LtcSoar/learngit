@@ -1,0 +1,79 @@
+actually,this is not only for QT study, but also something related to our hardware project.
+
+*----------------------------------------------------------------------------------------*  
+
+1.hmdata.h  
+the translation between Quaternion and RPY description  
+//输入rpy欧拉角(deg)  
+hmQuaternion::hmQuaternion(double roll, double pitch, double yaw)
+{
+    double phi = roll*acos(-1.0)/180/2;
+    double theta = pitch*acos(-1.0)/180/2;
+    double psi = yaw*acos(-1.0)/180/2;
+    q0 = cos(phi)*cos(theta)*cos(psi) + sin(phi)*sin(theta)*sin(psi);
+    q1 = sin(phi)*cos(theta)*cos(psi) - cos(phi)*sin(theta)*sin(psi);
+    q2 = cos(phi)*sin(theta)*cos(psi) + sin(phi)*cos(theta)*sin(psi);
+    q3 = cos(phi)*cos(theta)*sin(psi) - sin(phi)*sin(theta)*cos(psi);
+}
+
+若以q0为q4可以 得到很简单的结果  ：尤其是在从欧拉角转换为四元数的时候  
+如果从四元数转化为欧拉角  如果要全角度操作 需要用到一个算法  详见一种新的全角度四元数与欧拉角的转换算法  
+不过该算法计算量会增大  要进行判断之类的 或许采用也不是很合适   
+Qstring  for QT中的字符串格式
+QDataStream  for QT中的二进制流
+QTextStream  for QT中的文本流  上述均用于输入输出 
+
+rssi 用于表示信号强度 用来表征信号连接强度的量   Received Signal Strength Indicator
+
+Xsens 是传感器 #include <xsensdeviceapi.h> // The Xsens device API header   想必是对传感器的操作所需要的一些头文件内容  
+
+只有继承了QObject类的类，才具有信号槽的能力。所以，为了使用信号槽，必须继承QObject。
+凡是QObject类（不管是直接子类还是间接子类），都应该在第一行代码写上Q_OBJECT。不管是不是使用信号槽，都应该添加这个宏。
+这个宏的展开将为我们的类提供信号槽机制、国际化机制以及 Qt 提供的不基于 C++ RTTI 的反射能力。
+
+slot Signals是QT内部的信号与槽机制的一部分  
+信号与槽是一种Qt特有的对象间通信的机制，是Qt区别于其他图形系统的基本特征。信号与槽之间是一种松散的连接关系，这种连接关系可以在程序运行时动态改变，这为Qt编程提供了极大的灵活性。
+
+
+       定义信号使用Qt的signals关键字。注意信号没有访问权限，实际上它们都是受保护权限的，也就是说只有定义信号的类自己及派生类才能发射这个信号。信号一般定义为无返回值的函数，这个函数不需要实现（由moc工具自动生成的代码实现）。
+
+
+      定义槽使用Qt的slots关键字。槽同时也是一个普通函数，可以有各种访问权限。
+
+
+      发射信号使用Qt的emit关键字。信号发射后，与这个信号链接的槽就会被调用。
+
+
+      连接信号和槽可以使用QObject类的以下静态成员函数：
+
+例如 ：
+bool connect(const QObject *sender, const char *signal, const QObject *receiver, const char *method, Qt::ConnectionType type = Qt::AutoConnection);
+对应的成员参数的内部关系：
+
+    1）sender：指向Qt对像，信号的发送者。
+
+    2）signal：表示信号的字符串。
+
+    3）receiver：指向Qt对象，信号的接受者。
+
+    4）method：表示与信号连接的方式的字符串，这里的方法可以是槽或信号。
+
+    5）type：表示连接方式。
+
+    6）返回值：true表示连接成功，false表示连接失败。
+	
+QMutex 是QT 中用于做线程临界资源保护的  在多线程情况下 可以保证一个资源在同一时刻只被一个线程调用，
+大概只需要用到lock与unlock函数就行
+
+vector虽然是QT中的类 不过其意义与方法与C++中似乎是一致的。
+
+QTtimer头文件  
+QTimer *timer = new QTimer(this);  
+connect(timer, SIGNAL(timeout()), this, SLOT(update()));  
+timer->start(1000);  
+大概可以用这样的用法  其作用就是用来计时     
+
+quint32 或者quint64这是QT中的数据格式类型 表示数据的位数
+
+最后补充一点关于 进程与线程的关系 一个进程里面可以有多个线程  多个线程既然在同一个进程里面 便可能会占用同一份资源 
+类比为开桌子和一起吃饭
