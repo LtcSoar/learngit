@@ -167,6 +167,6 @@ int main()
 	}
 	it is really
 	unbelievable
-	that it can chase the real ending  and this editor will remenber every word i say ,it is really interesing.
+	that it can chase the real ending  and this editor will remember every word i say ,it is really interesing.
 	
 	
